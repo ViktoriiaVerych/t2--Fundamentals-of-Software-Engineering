@@ -17,6 +17,14 @@ namespace test_database
             var result = YourClass.GetData(mock.Object, 0);
             Assert.AreEqual("test_data", result);
         }
+
+        [TestMethod]
+        public void AdjustTimezone_Plus()
+        {
+            var dt = new DateTime(2023, 9, 25, 17, 26, 28);
+            var result = YourClass.AdjustTimezone(dt, "+03:00");
+            Assert.AreEqual(new DateTime(2023, 9, 25, 14, 26, 28), result);
+        }
     }
     
 }
