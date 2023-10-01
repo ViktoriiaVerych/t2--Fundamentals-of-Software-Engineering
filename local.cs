@@ -65,5 +65,26 @@ class Program
                 return null;
             }
         }
+
+        List<Dictionary<string, string>> get_all_data()
+        {
+            int offset = 0;
+            List<Dictionary<string, string>> all_data = new List<Dictionary<string, string>>();
+
+            while (true)
+            {
+                List<Dictionary<string, string>> data = get_data(offset);
+
+                if (data == null || data.Count == 0)
+                {
+                    break;
+                }
+
+                all_data.AddRange(data);
+                offset += data.Count;
+            }
+
+            return all_data;
+        }
     }
 }
