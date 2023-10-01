@@ -50,6 +50,16 @@ namespace test_database
             Assert.IsTrue(resultDiff is TimeSpan);
         }
 
+
+        [TestMethod]
+        public void FormatTimeDiff_30sec()
+        {
+            var diff = TimeSpan.FromSeconds(29);
+            var lan = "en-US";
+            var result = YourClass.FormatTimeDiff(diff, lan);
+            Assert.AreEqual("was seen just now", result);
+        }
+
     }
     
 }
