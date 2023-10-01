@@ -81,6 +81,18 @@ namespace test_database
             CollectionAssert.AreEqual(new List<string> { "data1" }, result);
         }
 
+        [TestMethod]
+        public void PrintUserStatusIfValidData()
+        {
+            var mockConsole = new Mock<IConsole>();
+            var userName = "test_user";
+            var status = "was seen just now";
+
+            YourClass.PrintUserStatus(userName, status, mockConsole.Object);
+
+            mockConsole.Verify(console => console.WriteLine($"{userName} {status}"), Times.Once());
+        }
+
     }
     
 }
