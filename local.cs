@@ -140,5 +140,49 @@ class Program
                 return (user_name, null);
             }
         }
+
+
+        string format_time_diff(TimeSpan? diff, string lang)
+        {
+            if (diff == null)
+            {
+                return localizations[lang]["IsOnline"];
+            }
+
+            double seconds = diff.Value.TotalSeconds;
+
+            if (seconds < 30)
+            {
+                return localizations[lang]["JustNow"];
+            }
+            else if (seconds < 60)
+            {
+                return localizations[lang]["LessThanAMinuteAgo"];
+            }
+            else if (seconds < 3600)
+            {
+                return localizations[lang]["LatishAgo"];
+            }
+            else if (seconds < 7200)
+            {
+                return localizations[lang]["AnHourAgo"];
+            }
+            else if (diff.Value.Days == 0)
+            {
+                return localizations[lang]["Today"];
+            }
+            else if (diff.Value.Days == 1)
+            {
+                return localizations[lang]["Yesterday"];
+            }
+            else if (diff.Value.Days < 7)
+            {
+                return localizations[lang]["ThisWeek"];
+            }
+            else
+            {
+                return localizations[lang]["LongTimeAgo"];
+            }
+        }
     }
 }
