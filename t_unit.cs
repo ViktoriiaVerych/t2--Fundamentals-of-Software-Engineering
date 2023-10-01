@@ -36,6 +36,20 @@ namespace test_database
             Assert.AreEqual("+03:00", timeInfo);
         }
 
+        [TestMethod]
+        public void FormatLastSeen_ValidUser()
+        {
+            var user = new Dictionary<string, string>
+            {
+                { "nickname", "test_user" },
+                { "lastSeenDate", "2023-09-25T17:26:28.123456+03:00" }
+            };
+
+            var (resultName, resultDiff) = YourClass.FormatLastSeen(user);
+            Assert.AreEqual("test_user", resultName);
+            Assert.IsTrue(resultDiff is TimeSpan);
+        }
+
     }
     
 }
