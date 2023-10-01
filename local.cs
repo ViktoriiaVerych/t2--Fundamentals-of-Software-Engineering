@@ -33,7 +33,20 @@ class Program
                 ["Yesterday"] = "was seen yesterday",
                 ["ThisWeek"] = "was seen this week",
                 ["LongTimeAgo"] = "was seen long, long time ago"
-            } 
+            },
+            
+            ["uk-UA"] = new Dictionary<string, string>
+            {
+                ["IsOnline"] = "у мережі",
+                ["JustNow"] = "був_ла у мережі прямо зараз",
+                ["LessThanAMinuteAgo"] = "був_ла у мережі менше хвилини тому",
+                ["LatishAgo"] = "був_ла у мережі кілька хвилин тому",
+                ["AnHourAgo"] = "був_ла у мережі годину тому",
+                ["Today"] = "був_ла у мережі сьогодні",
+                ["Yesterday"] = "був_ла у мережі вчора",
+                ["ThisWeek"] = "був_ла у мережі цього тижні",
+                ["LongTimeAgo"] = "був_ла у мережі доволі давно"
+            }
         }
     }
 }
