@@ -34,7 +34,7 @@ class Program
                 ["ThisWeek"] = "was seen this week",
                 ["LongTimeAgo"] = "was seen long, long time ago"
             },
-            
+
             ["uk-UA"] = new Dictionary<string, string>
             {
                 ["IsOnline"] = "у мережі",
@@ -46,6 +46,23 @@ class Program
                 ["Yesterday"] = "був_ла у мережі вчора",
                 ["ThisWeek"] = "був_ла у мережі цього тижні",
                 ["LongTimeAgo"] = "був_ла у мережі доволі давно"
+            }
+        }
+
+        List<Dictionary<string, string>> get_data(int offset)
+        {
+            string link = $"https://sef.podkolzin.consulting/api/users/lastSeen?offset={offset}";
+            HttpClient client = new HttpClient();
+            HttpResponseMessage response = client.GetAsync(link).Result;
+
+            if (response.IsSuccessStatusCode)
+            {
+                Dictionary<string, List<Dictionary<string, string>>> data = response.Content.ReadAsAsync<Dictionary<string, List<Dictionary<string, string>>>>().Result;
+                return data["data"];
+            }
+            else
+            {
+                return null;
             }
         }
     }
