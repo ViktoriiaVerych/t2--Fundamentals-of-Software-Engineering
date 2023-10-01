@@ -120,5 +120,25 @@ class Program
 
             return last_seen;
         }
+        
+
+        (string, TimeSpan?) format_last_seen(Dictionary<string, string> user)
+        {
+            string user_name = user["nickname"];
+            string last_seen_str = user["lastSeenDate"];
+
+            if (!string.IsNullOrEmpty(last_seen_str))
+            {
+                (DateTime last_seen, string timeInfo) = parse_last_seen_date(last_seen_str);
+                last_seen = adjust_timezone(last_seen, timeInfo);
+                DateTime now = DateTime.Now;
+                TimeSpan? diff = now - last_seen;
+                return (user_name, diff);
+            }
+            else
+            {
+                return (user_name, null);
+            }
+        }
     }
 }
