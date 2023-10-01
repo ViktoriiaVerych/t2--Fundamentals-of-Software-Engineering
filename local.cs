@@ -86,5 +86,22 @@ class Program
 
             return all_data;
         }
+
+        
+        (DateTime, string) parse_last_seen_date(string last_seen_str)
+        {
+            string timeInfo = last_seen_str.Substring(last_seen_str.Length - 6);
+            last_seen_str = last_seen_str.Replace('T', ' ');
+
+            if (last_seen_str.Contains('.'))
+            {
+                string[] time_parts = last_seen_str.Split('.');
+                time_parts[1] = time_parts[1].Substring(0, Math.Min(6, time_parts[1].Length));
+                last_seen_str = string.Join(".", time_parts);
+            }
+
+            last_seen_str = last_seen_str.Split('+')[0];
+            return (DateTime.ParseExact(last_seen_str, "yyyy-MM-dd HH:mm:ss.ffffff", null), timeInfo);
+        }
     }
 }
