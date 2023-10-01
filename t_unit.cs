@@ -71,6 +71,16 @@ namespace test_database
             Assert.AreEqual("en-US", result);
         }
 
+         [TestMethod]
+        public void GetAllDataWhenCalled()
+        {
+            var mock = new Mock<IRestClient>();
+            mock.Setup(client => client.Get("your_url")).Returns(new ApiResponse { Data = "data1" });
+
+            var result = YourClass.GetAllData(mock.Object);
+            CollectionAssert.AreEqual(new List<string> { "data1" }, result);
+        }
+
     }
     
 }
