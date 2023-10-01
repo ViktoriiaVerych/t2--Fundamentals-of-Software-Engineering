@@ -184,5 +184,17 @@ class Program
                 return localizations[lang]["LongTimeAgo"];
             }
         }
+
+        void print_user_status(string user_name, string status)
+        {
+            if (status == "is online")
+            {
+                Console.WriteLine($"{user_name} {status}");
+            }
+            else
+            {
+                Console.WriteLine($"{user_name} {status}");
+            }
+        }
     }
 }
