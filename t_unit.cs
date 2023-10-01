@@ -25,6 +25,17 @@ namespace test_database
             var result = YourClass.AdjustTimezone(dt, "+03:00");
             Assert.AreEqual(new DateTime(2023, 9, 25, 14, 26, 28), result);
         }
+
+
+        [TestMethod]
+        public void ParseLastSeenDate_ValidString()
+        {
+            var input = "2023-09-25T17:26:28.123456+03:00";
+            var (result, timeInfo) = YourClass.ParseLastSeenDate(input);
+            Assert.AreEqual(new DateTime(2023, 9, 25, 17, 26, 28, 123), result);
+            Assert.AreEqual("+03:00", timeInfo);
+        }
+
     }
     
 }
