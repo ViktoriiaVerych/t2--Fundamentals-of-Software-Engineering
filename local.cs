@@ -196,5 +196,13 @@ class Program
                 Console.WriteLine($"{user_name} {status}");
             }
         }
+
+        List<Dictionary<string, string>> data = get_all_data();
+        foreach (Dictionary<string, string> user in data)
+        {
+            (string user_name, TimeSpan? diff) = format_last_seen(user);
+            string status = format_time_diff(diff, lang);
+            print_user_status(user_name, status);
+        }
     }
 }
