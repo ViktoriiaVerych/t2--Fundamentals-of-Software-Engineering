@@ -60,6 +60,17 @@ namespace test_database
             Assert.AreEqual("was seen just now", result);
         }
 
+
+        [TestMethod]
+        public void ReturnEn()
+        {
+            var mockInput = new Mock<IUserInput>();
+            mockInput.Setup(input => input.GetInput()).Returns("1");
+
+            var result = YourClass.ChooseLanguage(mockInput.Object);
+            Assert.AreEqual("en-US", result);
+        }
+
     }
     
 }
