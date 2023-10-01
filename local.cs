@@ -103,5 +103,22 @@ class Program
             last_seen_str = last_seen_str.Split('+')[0];
             return (DateTime.ParseExact(last_seen_str, "yyyy-MM-dd HH:mm:ss.ffffff", null), timeInfo);
         }
+
+        DateTime adjust_timezone(DateTime last_seen, string timeInfo)
+        {
+            char sign = timeInfo[0];
+            int hours = int.Parse(timeInfo.Substring(1, 2));
+
+            if (sign == '+')
+            {
+                return last_seen.AddHours(-hours);
+            }
+            else if (sign == '-')
+            {
+                return last_seen.AddHours(hours);
+            }
+
+            return last_seen;
+        }
     }
 }
